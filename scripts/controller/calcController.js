@@ -16,10 +16,30 @@ class CalcController {
 
     //metodo main
     initialize(){
-
         //this._displayCalcEl = 0 
         this.setDisplayDateTime()
         console.log("Chamou a classe")        
+
+        setInterval(() => {
+            this.setDisplayDateTime()
+        }, 1000)
+
+        this.initButtonEvents()
+    }
+
+    addEventListenerAll(element, event, fnc){
+
+    }
+
+    //evento clique nos botaoes da calculadora
+    initButtonEvents(){
+        let buttons = document.querySelectorAll("#buttons > g, #parts > g")
+
+        buttons.forEach((btn, index) => {
+            this.addEventListenerAll(btn, "click drag", e => {
+                
+            })
+        })
     }
 
     //get e set    
@@ -59,8 +79,12 @@ class CalcController {
     }
 
     setDisplayDateTime(){
-        this.displayDate = this.currentDate.toLocaleDateString(this._locale)
         this.displayTime = this.currentDate.toLocaleTimeString(this._locale)
+        this.displayDate = this.currentDate.toLocaleDateString(this._locale, {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric'
+        })
     }
 }
 
